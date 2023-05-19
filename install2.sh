@@ -9,7 +9,7 @@ echo KEYMAP=jp106 > /etc/vconsole.conf
 
 echo -n INPUT_Hostname: 
 read　hostnm
-echo ${hostnm} > /etc/hostname
-echo 127.0.0.1 localhost > /etc/hosts
-::1 localhost >> /etc/hosts
-127.0.1.1 ${hostnm}.localdomain ${hostnm} >> /etc/hosts
+echo '${hostnm}' > /etc/hostname
+echo '127.0.0.1 localhost' > /etc/hosts
+echo '::1 localhost' >> /etc/hosts
+echo '127.0.1.1 ${hostnm}.localdomain ${hostnm}' >> /etc/hosts
