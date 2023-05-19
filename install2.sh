@@ -7,7 +7,8 @@ locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo KEYMAP=jp106 > /etc/vconsole.conf
 
-hostnm=hiropc
+echo -n INPUT_Hostname: 
+read　hostnm
 echo ${hostnm} > /etc/hostname
 echo 127.0.0.1 localhost > /etc/hosts
 ::1 localhost >> /etc/hosts
