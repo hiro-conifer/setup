@@ -9,6 +9,6 @@ sgdisk -n 3:0: -t 3:8304 ${tgt_disk}
 
 mkfs.vfat -F 32 ${tgt_disk}1
 mkswap ${tgt_disk}2
-mkfs.ext4 ${tgt_disk}3
+mkfs.ext4 -F ${tgt_disk}3
 
-pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
+#pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
