@@ -15,23 +15,7 @@ mount ${tgt_disk}3 /mnt
 mount --mkdir ${tgt_disk}1 /mnt/boot
 swapon ${tgt_disk}2
 
-pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
+pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware git
 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
-
-ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-hwclock --systohc
-
-sed -i '/# ja_JP.UTF-8 UTF-8/ja_JP.UTF-8 UTF-8/' /etc/locale.gen
-sed -i '/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-locale-gen
-echo LANG=en_US.UTF-8 > /etc/locale.conf
-echo KEYMAP=jp106 > /etc/vconsole.conf
-
-hostnm=hiropc
-echo ${hostnm} > /etc/hostname
-echo 127.0.0.1 localhost > /etc/hosts
-::1 localhost >> /etc/hosts
-127.0.1.1 ${hostnm}.localdomain ${hostnm} >> /etc/hosts
-
