@@ -13,6 +13,13 @@ mkfs.ext4 -F ${tgt_disk}3
 
 mount ${tgt_disk}3 /mnt
 mount --mkdir ${tgt_disk}1 /mnt/boot
-# swapon ${tgt_disk}2
+swapon ${tgt_disk}2
 
-#pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
+pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware
+
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+hwclock --systohc
+
