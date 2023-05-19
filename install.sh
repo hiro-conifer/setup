@@ -31,6 +31,7 @@ echo KEYMAP=jp106 > /etc/vconsole.conf
 
 hostnm=hiropc
 echo ${hostnm} > /etc/hostname
-echo 127.0.0.1	localhost > /etc/hosts
-::1 localhost > /etc/hosts
-127.0.1.1 ${hostnm}.localdomain ${hostnm}
+echo 127.0.0.1 localhost > /etc/hosts
+::1 localhost >> /etc/hosts
+127.0.1.1 ${hostnm}.localdomain ${hostnm} >> /etc/hosts
+
