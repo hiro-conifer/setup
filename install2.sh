@@ -62,4 +62,5 @@ echo $usernm:$userpw | chpasswd
 export EDITOR=vim
 sed -e '/%wheel ALL=(ALL:ALL) ALL/s^# //' /etc/sudoers | EDITOR=tee visudo > /dev/null
 
-sp -r /root/setup /home/$usernm/
+mv -f /root/setup /home/$usernm/
+reboot
