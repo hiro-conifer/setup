@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -e target_disk ]; then
-  echo not found file.(target_disk)
+  echo 'not found file.($target_disk)'
   exit
 fi
 target_disk=`cat target_disk`
@@ -61,6 +61,6 @@ read userpw
 echo $usernm:$userpw | chpasswd
 
 export EDITOR=vim
-sed -e '/%wheel ALL=(ALL:ALL) ALL/s^# //' /etc/sudoers | EDITOR=tee visudo > /dev/null
+sed -e '/%wheel ALL=(ALL:ALL) ALL/s/^# //' /etc/sudoers | EDITOR=tee visudo > /dev/null
 
 mv -f /setup /home/$usernm/
