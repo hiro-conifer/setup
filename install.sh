@@ -2,6 +2,11 @@
 
 echo Type Target Disk:
 read tgt_disk
+lsblk | grep ${tgt_disk}
+if [ $? != 0 ]; then
+  echo 'not found.'
+  exit
+fi
 tgt_disk=/dev/${tgt_disk}
 sgdisk -Z ${tgt_disk}
 sgdisk -o ${tgt_disk}
@@ -17,7 +22,7 @@ mount ${tgt_disk}3 /mnt
 mount --mkdir ${tgt_disk}1 /mnt/boot
 swapon ${tgt_disk}2
 
-pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware git
+pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware git vim
 
 genfstab -U /mnt >> /mnt/etc/fstab
 cp -r /root/setup /mnt/
