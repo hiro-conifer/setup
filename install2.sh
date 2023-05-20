@@ -8,7 +8,7 @@ locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo KEYMAP=jp106 > /etc/vconsole.conf
 
-echo TYPE_HOSTNAME:
+echo Type Hostname:
 read hostnm
 echo ${hostnm} > /etc/hostname
 echo 127.0.0.1 localhost > /etc/hosts
@@ -29,3 +29,14 @@ echo options root=`blkid -o export /dev/sdb3 | grep ^PARTUUID` rw >> /boot/loade
 
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
+
+echo Type root password:
+read rootpw
+echo root:$rootpw | chpasswd
+
+echo Type Username:
+read usernm
+useradd -m -G wheel $usernm
+echo Type Userpassword:
+read userpw
+echo $usernm:$userpw | chpasswd
