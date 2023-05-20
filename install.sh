@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 echo Type Target Disk:
 read tgt_disk
+tgt_disk=/dev/${tgt_disk}
 sgdisk -Z ${tgt_disk}
 sgdisk -o ${tgt_disk}
 sgdisk -n 1:0:+512M -t 1:ef00 ${tgt_disk}
@@ -19,4 +20,5 @@ swapon ${tgt_disk}2
 pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware git
 
 genfstab -U /mnt >> /mnt/etc/fstab
+cp -r /root/setup /mnt/
 arch-chroot /mnt
