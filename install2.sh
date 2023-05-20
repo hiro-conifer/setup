@@ -31,7 +31,7 @@ echo 127.0.0.1 localhost > /etc/hosts
 echo ::1 localhost >> /etc/hosts
 echo 127.0.1.1 ${hostnm}.localdomain ${hostnm} >> /etc/hosts
 
-pacman -S --noconfirm booster networkmanager pacman-contrib zsh ${ucode}
+pacman -S --noconfirm booster networkmanager pacman-contrib zsh vivaldi ${ucode}
 bootctl install
 
 echo default arch.conf > /boot/loader/loader.conf
@@ -46,7 +46,7 @@ echo options root=`blkid -o export ${target_disk}3 | grep ^PARTUUID` rw >> /boot
 
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
-systemctrl enable systemd-timesyncd.service
+systemctl enable systemd-timesyncd.service
 systemctl enable paccache.timer
 
 clear
@@ -65,4 +65,5 @@ echo $usernm:$userpw | chpasswd
 export EDITOR=vim
 sed -e '/%wheel ALL=(ALL:ALL) ALL/s/^# //' /etc/sudoers | EDITOR=tee visudo > /dev/null
 
-mv -f /setup /home/$usernm/
+git clone https://github.com/hiro-conifer/dotfiles.git
+rm -rf /setup
