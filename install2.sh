@@ -42,7 +42,7 @@ echo title Arch Linux > /boot/loader/entries/arch.conf
 echo linux /vmlinuz-linux-zen >> /boot/loader/entries/arch.conf
 echo initrd /${ucode}.img >> /boot/loader/entries/arch.conf
 echo initrd /booster-linux-zen.img >> /boot/loader/entries/arch.conf
-echo options root=`blkid -o export ${target_disk} | grep ^PARTUUID` rw >> /boot/loader/entries/arch.conf
+echo options root=`blkid -o export ${target_disk}3 | grep ^PARTUUID` rw >> /boot/loader/entries/arch.conf
 
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
