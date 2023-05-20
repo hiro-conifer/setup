@@ -24,16 +24,28 @@ echo editor no >> /boot/loader/loader.conf
 
 echo title Arch Linux >> /boot/loader/entries/arch.conf
 echo linux /vmlinuz-linux-zen >> /boot/loader/entries/arch.conf
+lscpu | grep 'Model name' | grep 'Intel'
+if [ $? = 0 ]; then
+  pacman -S --noconfirm intel-ucode
+  echo initrd /intel-ucode.img >> /boot/loader/entries/arch.conf
+fi
+lscpu | grep 'Model name' | grep 'AMD'
+if [ $? = 0 ]; then
+  pacman -S --noconfirm amd-ucode
+  echo initrd /amd-ucode.img >> /boot/loader/entries/arch.conf
+fi
 echo initrd /booster-linux-zen.img >> /boot/loader/entries/arch.conf
 echo options root=`blkid -o export /dev/sdb3 | grep ^PARTUUID` rw >> /boot/loader/entries/arch.conf
 
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
 
+clear
 echo Type root password:
 read rootpw
 echo root:$rootpw | chpasswd
 
+clear
 echo Type Username:
 read usernm
 useradd -m -G wheel $usernm
