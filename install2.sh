@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -e target_disk ]; then
-  echo 'not found file.($target_disk)'
+  echo 'not found file.(target_disk)'
   exit
 fi
 target_disk=`cat target_disk`
