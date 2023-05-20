@@ -1,6 +1,7 @@
 #!/bin/bash
 
-tgt_disk=/dev/sdb
+echo Type Target Disk:
+read tgt_disk
 sgdisk -Z ${tgt_disk}
 sgdisk -o ${tgt_disk}
 sgdisk -n 1:0:+512M -t 1:ef00 ${tgt_disk}
