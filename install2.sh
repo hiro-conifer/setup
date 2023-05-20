@@ -38,7 +38,7 @@ echo default arch.conf > /boot/loader/loader.conf
 echo console-mode max >> /boot/loader/loader.conf
 echo editor no >> /boot/loader/loader.conf
 
-echo title Arch Linux >> /boot/loader/entries/arch.conf
+echo title Arch Linux > /boot/loader/entries/arch.conf
 echo linux /vmlinuz-linux-zen >> /boot/loader/entries/arch.conf
 echo initrd /${ucode}.img >> /boot/loader/entries/arch.conf
 echo initrd /booster-linux-zen.img >> /boot/loader/entries/arch.conf
