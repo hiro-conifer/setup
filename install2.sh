@@ -23,6 +23,7 @@ locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo KEYMAP=jp106 > /etc/vconsole.conf
 
+clear
 echo Type Hostname:
 read hostnm
 echo ${hostnm} > /etc/hostname
@@ -52,10 +53,10 @@ read rootpw
 echo root:$rootpw | chpasswd
 
 clear
-echo Type Username:
+echo Type Create Username:
 read usernm
 useradd -m -G wheel $usernm
-echo Type Userpassword:
+echo Type User Password:
 read userpw
 echo $usernm:$userpw | chpasswd
 
