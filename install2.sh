@@ -15,7 +15,7 @@ echo 127.0.0.1 localhost > /etc/hosts
 echo ::1 localhost >> /etc/hosts
 echo 127.0.1.1 ${hostnm}.localdomain ${hostnm} >> /etc/hosts
 
-pacman -S --noconfirm booster networkmanager
+pacman -S --noconfirm booster networkmanager vim
 bootctl install
 
 echo default arch.conf > /boot/loader/loader.conf
@@ -52,3 +52,5 @@ useradd -m -G wheel $usernm
 echo Type Userpassword:
 read userpw
 echo $usernm:$userpw | chpasswd
+
+sed -i /'# %wheel ALL=(ALL:ALL) ALL'/'%wheel ALL=(ALL:ALL) ALL'/ /etc/sudoers
