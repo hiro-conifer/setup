@@ -8,6 +8,8 @@ if [ $? != 0 ]; then
   exit
 fi
 tgt_disk=/dev/${tgt_disk}
+echo ${tgt_disk} > target_disk
+
 sgdisk -Z ${tgt_disk}
 sgdisk -o ${tgt_disk}
 sgdisk -n 1:0:+512M -t 1:ef00 ${tgt_disk}
