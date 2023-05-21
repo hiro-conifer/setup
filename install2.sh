@@ -31,19 +31,20 @@ echo 127.0.0.1 localhost > /etc/hosts
 echo ::1 localhost >> /etc/hosts
 echo 127.0.1.1 ${hostnm}.localdomain ${hostnm} >> /etc/hosts
 
-pacman -S --noconfirm booster networkmanager pacman-contrib zsh vivaldi ${ucode}
 bootctl install
 
 echo default arch.conf > /boot/loader/loader.conf
 echo console-mode max >> /boot/loader/loader.conf
 echo editor no >> /boot/loader/loader.conf
 
+pacman -S --noconfirm booster ${ucode}
 echo title Arch Linux > /boot/loader/entries/arch.conf
 echo linux /vmlinuz-linux-zen >> /boot/loader/entries/arch.conf
 echo initrd /${ucode}.img >> /boot/loader/entries/arch.conf
 echo initrd /booster-linux-zen.img >> /boot/loader/entries/arch.conf
 echo options root=`blkid -o export ${target_disk}3 | grep ^PARTUUID` rw >> /boot/loader/entries/arch.conf
 
+pacman -S --noconfirm pacman-contrib networkmanager
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
 systemctl enable systemd-timesyncd.service
@@ -64,6 +65,12 @@ echo $usernm:$userpw | chpasswd
 
 export EDITOR=vim
 sed -e '/%wheel ALL=(ALL:ALL) ALL/s/^# //' /etc/sudoers | EDITOR=tee visudo > /dev/null
+
+sed -i '/Color/s/^#//' /etc/pacman.conf
+sed -i '/VerbosePkgLists/s/^#//' /etc/pacman.conf
+sed -i '/ParallelDownloads = 5/s/^#//' /etc/pacman.conf
+
+pacman -S --noconfirm zsh vivaldi man-db man-pages unarchiver
 
 cd /home/${usernm}
 git clone https://github.com/hiro-conifer/dotfiles.git
