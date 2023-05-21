@@ -49,6 +49,7 @@ systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
 systemctl enable systemd-timesyncd.service
 systemctl enable paccache.timer
+systemctrl enable systemd-timesyncd.service
 
 clear
 echo Type root password:
