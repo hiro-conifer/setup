@@ -5,8 +5,8 @@ ln -sf ~/dotfiles/.xprofile ~/.xprofile
 
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+makepkg -si --noconfirm
 
-sudo pacman -S --noconfirm xorg-xwayland qt5-wayland
-sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter
-sudo pacman -S --noconfirm sway swaylock-fancy swayidle swaybg waybar mako
+yay -S --noconfirm xorg-xwayland qt5-wayland
+yay -S --noconfirm lightdm lightdm-webkit2-greeter lightdm-webkit2-theme-reactive
+yay -S --noconfirm swayfx swaylock-fancy swayidle swaybg waybar mako
