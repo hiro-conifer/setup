@@ -1,9 +1,9 @@
 #!/bin/sh
-if [ -e target_disk ]; then
-  echo 'not found file.(target_disk)'
+if [ -e target_part ]; then
+  echo 'not found file.(target_part)'
   exit
 fi
-target_disk=`cat target_disk`
+target_disk=`cat target_part`
 
 lscpu | grep 'Model name' | grep 'Intel'
 if [ $? = 0 ]; then
@@ -17,8 +17,11 @@ fi
 ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 hwclock --systohc
 
-echo ja_JP.UTF-8 UTF-8 >> /etc/locale.gen
-echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+sed -i /ja_JP.UTF-8/s/^#// /etc/locale.gen
+sed -i /en_US.UTF-8/s/^#// /etc/locale.gen
+
+# echo ja_JP.UTF-8 UTF-8 >> /etc/locale.gen
+# echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo KEYMAP=jp106 > /etc/vconsole.conf
