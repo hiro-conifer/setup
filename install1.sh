@@ -9,6 +9,8 @@ fi
 tgt_disk=/dev/${tgt_disk}
 echo ${tgt_disk} > target_disk
 
+timedatectl set-ntp true
+
 sgdisk -Z ${tgt_disk}
 sgdisk -o ${tgt_disk}
 sgdisk -n 1:0:+512M -t 1:ef00 ${tgt_disk}
@@ -23,7 +25,7 @@ mount ${tgt_disk}3 /mnt
 swapon ${tgt_disk}2
 mount --mkdir ${tgt_disk}1 /mnt/boot
 
-pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware git vim
+pacstrap /mnt base base-devel linux-zen linux-zen-headers linux-firmware git neovim
 
 genfstab -U /mnt >> /mnt/etc/fstab
 cp -r /root/setup /mnt/
