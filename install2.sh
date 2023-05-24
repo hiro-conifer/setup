@@ -1,4 +1,4 @@
-ひ#!/bin/sh
+#!/bin/sh
 if [ -e target_part ]; then
   echo 'not found file.(target_part)'
   exit
