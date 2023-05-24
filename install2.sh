@@ -1,4 +1,4 @@
-#!/bin/sh
+ひ#!/bin/sh
 if [ -e target_part ]; then
   echo 'not found file.(target_part)'
   exit
@@ -45,7 +45,7 @@ echo title Arch Linux > /boot/loader/entries/arch.conf
 echo linux /vmlinuz-linux-zen >> /boot/loader/entries/arch.conf
 echo initrd /${ucode}.img >> /boot/loader/entries/arch.conf
 echo initrd /booster-linux-zen.img >> /boot/loader/entries/arch.conf
-echo options root=`blkid -o export ${target_disk}3 | grep ^PARTUUID` rw >> /boot/loader/entries/arch.conf
+echo options root=`blkid -o export ${target_part}3 | grep ^PARTUUID` rw >> /boot/loader/entries/arch.conf
 
 pacman -S --noconfirm pacman-contrib networkmanager
 systemctl enable NetworkManager.service
