@@ -74,7 +74,7 @@ sed -i '/Color/s/^#//' /etc/pacman.conf
 sed -i '/VerbosePkgLists/s/^#//' /etc/pacman.conf
 sed -i '/ParallelDownloads = 5/s/^#//' /etc/pacman.conf
 
-pacman -S --noconfirm go zsh vivaldi man-db man-pages unarchiver
+pacman -S --noconfirm go zsh man-db man-pages unarchiver
 
 cd /home/${usernm}
 git clone https://github.com/hiro-conifer/dotfiles.git
